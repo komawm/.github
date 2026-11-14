@@ -1,14 +1,18 @@
-# Future GitHub configuration
+# Declarative GitHub configuration
 
 The [repository settings](https://github.com/komawm/.github/blob/main/github/repositories.toml),
 [labels](https://github.com/komawm/.github/blob/main/github/labels.toml), and
 [milestones](https://github.com/komawm/.github/blob/main/github/milestones.toml)
-are local declarations. The setup kit never sends them to GitHub. The current
-initialization creates no remote repository, issue, label, milestone, release,
-secret, or ruleset.
+define the declarative GitHub plan for the six published `komawm` repositories
+(`remote_changes_enabled = true`, public visibility, `v0.0.x` incubation line
+before `v0.1.0` release acceptance). The setup kit does not run an automatic
+background API writer; remote updates are applied deliberately from this plan.
+Under ignored `recording/`, `recording/references/` holds read-only external
+reference clones (such as `Hyprland` and `niri`) alongside VM images and local
+acceptance evidence.
 
-A later authorized remote-update task should review the existing repositories, visibility, topics,
-descriptions, issue settings, and actual CI job names before applying them. Set
+Remote configuration tasks should keep repository visibility, topics,
+descriptions, issue settings, and actual CI job names aligned with these files. Set
 branch rules to require pull requests, passing applicable CI, and review before
 merging product changes. Do not require a check that has never run or an
 uninstalled bot. Restrict force pushes and branch deletion as appropriate after

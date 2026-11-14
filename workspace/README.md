@@ -14,7 +14,7 @@ This directory groups independent repositories for [komawm](https://github.com/k
 
 `workspace.toml` distinguishes organization repositories from external references. Its keys name local checkouts; `koma-docs` points to the remote `komawm/docs` repository. Each organization repository has a `repo.toml` descriptor and owns its Git history, CarryCtx state, and local checks. Koma, Jiku, koma-types, and the organization repository use CI. Docs uses local Markdown checks, with no CI/CD or PR requirement. Packaging uses local checks and owns CD; its build artifacts can be attached to the corresponding Koma or Jiku GitHub Releases. Koma's nine crates remain together. Jiku includes its skills in the same repository; avatar work is deferred. Jiku's current library scaffolds and specifications must not be described as an accepted implementation. Preserve the external Phodopus checkout, origin, history, and state; no bootstrap or verification command writes through its link.
 
-Use `/tmp/koma/` for disposable data and the ignored `recording/` directory for durable local evidence, screenshots, logs, and VM data. Neither location is a repository or a CarryCtx project. Do not store secrets in tracked files.
+Use `/tmp/koma/` for disposable data and the ignored `recording/` directory for durable local evidence, screenshots, logs, VM data, and read-only external reference clones under `recording/references/` (such as `Hyprland` and `niri`). Neither location is a repository or a CarryCtx project. Do not store secrets in tracked files.
 
 From this directory, run:
 
@@ -30,9 +30,9 @@ ignored build-cache directory. It changes `RUSTUP_HOME` and `CARGO_HOME` only in
 the current shell when the respective local caches exist; normal settings remain
 in use when they are absent.
 
-Run build and CarryCtx commands from the relevant owned checkout. See [workspace agent guidance](https://github.com/komawm/.github/blob/main/workspace/AGENTS.md), [setup details](https://github.com/komawm/.github/blob/main/docs/workspace.md), and [Koma onboarding](https://github.com/komawm/docs/tree/main/docs/development). Canonical GitHub URLs express intended repository identity; local initialization does not imply remote publication.
+Run build and CarryCtx commands from the relevant owned checkout. See [workspace agent guidance](https://github.com/komawm/.github/blob/main/workspace/AGENTS.md), [setup details](https://github.com/komawm/.github/blob/main/docs/workspace.md), and [Koma onboarding](https://github.com/komawm/docs/tree/main/docs/development).
 
-The current setup is local-only. [Future GitHub configuration](https://github.com/komawm/.github/tree/main/github) records labels, milestones, repository settings, and review conventions without applying them. Koma remains in `v0.0.x` development until the [v0.1.0 acceptance requirements](https://github.com/komawm/.github/blob/main/docs/releases.md) are met. CodeRabbit bot integration is planned for later installation; local independent review and checks remain usable now.
+The six `komawm` repositories are published on GitHub (`remote_changes_enabled = true`) and configured from the [declarative GitHub configuration](https://github.com/komawm/.github/tree/main/github) for labels, milestones, repository settings, and review conventions. Koma remains in `v0.0.x` incubation development until the [v0.1.0 acceptance requirements](https://github.com/komawm/.github/blob/main/docs/releases.md) are met. CodeRabbit bot integration is planned for installation; local independent review and checks remain usable alongside remote workflows.
 
 Repository licenses are explicit boundaries:
 

@@ -3,10 +3,12 @@
 1. Work belongs to one owning repository and a scoped CarryCtx task. Record
    dependencies, named identity/session, decisions, progress, blockers, and
    checkpoints. Inspect existing work before starting.
-2. The current initialization is local-only. Do not create or modify GitHub
-   repositories, issues, labels, milestones, releases, settings, or secrets.
-   Track future configuration in the organization repository instead.
-3. After publication is explicitly authorized, link the GitHub issue and CarryCtx
+2. The six `komawm` repositories are published on GitHub (`remote_changes_enabled = true`,
+   `v0.0.x` incubation line before `v0.1.0` release acceptance) and configured from
+   the declarative GitHub plan in `github/`. Under ignored `recording/`,
+   `recording/references/` holds read-only external reference clones (such as
+   `Hyprland` and `niri`) alongside VM images and local acceptance evidence.
+3. Link the GitHub issue and CarryCtx
    task. Use branches/worktrees, coherent commits, a linked pull request, review,
    and passing required checks before merge for repositories using that workflow.
    Docs requires only local Markdown checks, with no CI/CD or issue/PR/review
@@ -16,7 +18,7 @@
    checkout work requires disjoint scopes.
 4. Labels describe type, area, platform, priority, and a meaningful blocking
    condition. Milestones group an actual acceptance target, not merely a date.
-   Apply the locally declared labels consistently when remote work is authorized.
+   Apply the declared labels consistently across published repositories.
 5. For local initialization, an independent review plus local gate evidence is
    sufficient to accept infrastructure. Report preexisting product gate failures
    and keep product acceptance as separate work.

@@ -1,7 +1,7 @@
-# Desired updates to owner-created repositories for a future authorized task.
+# Declarative repository settings for the published komawm repositories.
 # This file is descriptive: it is not consumed by an automatic API writer.
 schema_version = 1
-remote_changes_enabled = false
+remote_changes_enabled = true
 
 [repositories.koma]
 url = "https://github.com/komawm/koma"
@@ -12,7 +12,7 @@ has_wiki = false
 default_branch = "main"
 allow_squash_merge = true
 delete_branch_on_merge = true
-visibility = "confirm-at-publication"
+visibility = "public"
 
 [repositories.organization]
 url = "https://github.com/komawm/.github"
@@ -23,7 +23,7 @@ has_wiki = false
 default_branch = "main"
 allow_squash_merge = true
 delete_branch_on_merge = true
-visibility = "confirm-at-publication"
+visibility = "public"
 
 [repositories.jiku]
 url = "https://github.com/komawm/jiku"
@@ -34,7 +34,7 @@ has_wiki = false
 default_branch = "main"
 allow_squash_merge = true
 delete_branch_on_merge = true
-visibility = "confirm-at-publication"
+visibility = "public"
 
 [repositories.koma-types]
 url = "https://github.com/komawm/koma-types"
@@ -45,7 +45,7 @@ has_wiki = false
 default_branch = "main"
 allow_squash_merge = true
 delete_branch_on_merge = true
-visibility = "confirm-at-publication"
+visibility = "public"
 
 [repositories.koma-docs]
 url = "https://github.com/komawm/docs"
@@ -59,7 +59,7 @@ required_checks = []
 require_review = false
 coderabbit_required = false
 workflows = []
-visibility = "confirm-at-publication"
+visibility = "public"
 
 [repositories.packaging]
 url = "https://github.com/komawm/packaging"
@@ -71,4 +71,4 @@ default_branch = "main"
 require_pull_request = false
 required_checks = []
 workflows = ["cd"]
-visibility = "confirm-at-publication"
+visibility = "public"
