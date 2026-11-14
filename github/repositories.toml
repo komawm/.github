@@ -15,6 +15,8 @@ delete_branch_on_merge = true
 visibility = "public"
 release_environment = "release"
 release_deployment_policy = "tag:v*.*.*"
+release_active_secrets = []
+release_planned_secrets = ["COSIGN_PRIVATE_KEY", "COSIGN_PASSWORD", "CARGO_REGISTRY_TOKEN"]
 
 [repositories.organization]
 url = "https://github.com/komawm/.github"
@@ -26,6 +28,7 @@ default_branch = "main"
 allow_squash_merge = true
 delete_branch_on_merge = true
 visibility = "public"
+security_policy = "SECURITY.md"
 
 [repositories.jiku]
 url = "https://github.com/komawm/jiku"
@@ -39,6 +42,8 @@ delete_branch_on_merge = true
 visibility = "public"
 release_environment = "release"
 release_deployment_policy = "tag:v*.*.*"
+release_active_secrets = []
+release_planned_secrets = ["COSIGN_PRIVATE_KEY", "COSIGN_PASSWORD", "CARGO_REGISTRY_TOKEN"]
 
 [repositories.koma-types]
 url = "https://github.com/komawm/koma-types"
@@ -52,6 +57,8 @@ delete_branch_on_merge = true
 visibility = "public"
 release_environment = "release"
 release_deployment_policy = "tag:v*.*.*"
+release_active_secrets = []
+release_planned_secrets = ["COSIGN_PRIVATE_KEY", "COSIGN_PASSWORD"]
 
 [repositories.koma-docs]
 url = "https://github.com/komawm/docs"
@@ -80,3 +87,23 @@ workflows = ["cd"]
 visibility = "public"
 release_environment = "release"
 release_deployment_policy = "branch:main"
+release_publish_default = false
+release_active_secrets = ["PRODUCT_RELEASE_TOKEN"]
+release_planned_secrets = [
+  "COSIGN_PRIVATE_KEY",
+  "COSIGN_PASSWORD",
+  "AUR_SSH_PRIVATE_KEY",
+  "APT_GPG_PRIVATE_KEY",
+  "APT_GPG_PASSPHRASE",
+  "APT_REPO_TOKEN",
+  "COPR_API_LOGIN",
+  "COPR_API_TOKEN",
+  "RPM_GPG_PRIVATE_KEY",
+  "RPM_GPG_PASSPHRASE",
+  "ABUILD_PRIVATE_KEY",
+  "ABUILD_PUBLIC_KEY",
+  "CACHIX_AUTH_TOKEN",
+  "CACHIX_SIGNING_KEY",
+  "HOMEBREW_TAP_TOKEN",
+  "FREEBSD_PKG_SIGNING_KEY",
+]
