@@ -1,0 +1,12 @@
+# No due dates or remote objects are created during local initialization.
+schema_version = 1
+
+[[milestones]]
+title = "v0.0.1"
+description = "Local repository foundation, honest baseline checks, and documented blockers"
+acceptance = ["Independent repository layout", "CarryCtx and agent guidance", "Reusable quality entry points", "Recorded source and dependency baseline"]
+
+[[milestones]]
+title = "v0.1.0"
+description = "First independently accepted product release for an explicitly selected platform/backend matrix"
+acceptance = ["Reproducible green build and tests", "Accepted nested and selected hardware/VM scenarios", "Documented install and rollback", "Protocol, configuration, and security review", "Release artifacts and checksums", "Accurate support and limitation documentation"]

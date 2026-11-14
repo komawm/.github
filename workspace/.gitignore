@@ -1,0 +1,7 @@
+# Umbrella routing directory: repositories manage their own ignore policy.
+/recording/
+/.targets/
+/.trash/
+*.qcow2
+*.iso
+*.log

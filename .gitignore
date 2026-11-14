@@ -1,0 +1,5 @@
+.carryctx/config.local.toml
+.worktrees/
+recording/
+__pycache__/
+*.pyc

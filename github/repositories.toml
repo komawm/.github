@@ -1,0 +1,74 @@
+# Desired updates to owner-created repositories for a future authorized task.
+# This file is descriptive: it is not consumed by an automatic API writer.
+schema_version = 1
+remote_changes_enabled = false
+
+[repositories.koma]
+url = "https://github.com/komawm/koma"
+description = "Wayland tiling compositor with explicit desktop automation interfaces"
+topics = ["wayland", "compositor", "rust", "window-manager", "lua"]
+has_issues = true
+has_wiki = false
+default_branch = "main"
+allow_squash_merge = true
+delete_branch_on_merge = true
+visibility = "confirm-at-publication"
+
+[repositories.organization]
+url = "https://github.com/komawm/.github"
+description = "Koma organization profile and portable workspace governance"
+topics = ["koma", "workspace", "developer-tools"]
+has_issues = true
+has_wiki = false
+default_branch = "main"
+allow_squash_merge = true
+delete_branch_on_merge = true
+visibility = "confirm-at-publication"
+
+[repositories.jiku]
+url = "https://github.com/komawm/jiku"
+description = "Desktop orchestration agent with bundled skills for Koma"
+topics = ["wayland", "desktop-automation", "rust", "lua"]
+has_issues = true
+has_wiki = false
+default_branch = "main"
+allow_squash_merge = true
+delete_branch_on_merge = true
+visibility = "confirm-at-publication"
+
+[repositories.koma-types]
+url = "https://github.com/komawm/koma-types"
+description = "Versioned Koma Lua configuration type definitions"
+topics = ["koma", "lua", "types", "luals"]
+has_issues = true
+has_wiki = false
+default_branch = "main"
+allow_squash_merge = true
+delete_branch_on_merge = true
+visibility = "confirm-at-publication"
+
+[repositories.koma-docs]
+url = "https://github.com/komawm/docs"
+description = "Canonical Koma and Jiku architecture, specifications, and development docs"
+topics = ["koma", "wayland", "documentation"]
+has_issues = false
+has_wiki = false
+default_branch = "main"
+require_pull_request = false
+required_checks = []
+require_review = false
+coderabbit_required = false
+workflows = []
+visibility = "confirm-at-publication"
+
+[repositories.packaging]
+url = "https://github.com/komawm/packaging"
+description = "Koma distribution packaging and guarded release delivery"
+topics = ["koma", "packaging", "archlinux", "release"]
+has_issues = false
+has_wiki = false
+default_branch = "main"
+require_pull_request = false
+required_checks = []
+workflows = ["cd"]
+visibility = "confirm-at-publication"

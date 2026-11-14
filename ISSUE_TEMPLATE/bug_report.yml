@@ -1,0 +1,16 @@
+name: Bug report
+description: Report a reproducible Koma or workspace problem
+body:
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and observed behavior
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction and environment
+      description: Include revision, command, distribution, backend, and relevant logs. Remove private data.
+    validations:
+      required: true

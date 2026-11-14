@@ -1,0 +1,78 @@
+schema_version = 1
+
+[workspace]
+name = "koma"
+organization = "https://github.com/komawm"
+model = "independent-repositories"
+temporary_directory = "/tmp/koma"
+recording_directory = "recording"
+remote_changes_enabled = false
+development_versions = "0.0.x"
+first_accepted_release = "0.1.0"
+
+[repo.koma]
+kind = "core"
+lang = "rust"
+role = "Wayland tiling compositor, controller, MCP adapter, and overview"
+owner = "koma"
+repository = "https://github.com/komawm/koma"
+docs = "https://github.com/komawm/docs/tree/main/docs"
+
+[repo.".github"]
+kind = "meta"
+lang = "md/python"
+role = "Organization profile and portable workspace governance"
+owner = "koma"
+repository = "https://github.com/komawm/.github"
+docs = "https://github.com/komawm/.github/tree/main/docs"
+
+[repo.jiku]
+kind = "core"
+lang = "rust"
+role = "Desktop orchestration agent and bundled skills"
+owner = "koma"
+repository = "https://github.com/komawm/jiku"
+docs = "https://github.com/komawm/docs"
+
+[repo.koma-types]
+kind = "types"
+lang = "lua"
+role = "Versioned Koma Lua configuration types"
+owner = "koma"
+repository = "https://github.com/komawm/koma-types"
+docs = "https://github.com/komawm/koma-types"
+
+# Keys identify local checkout names; this checkout's remote is komawm/docs.
+[repo.koma-docs]
+kind = "docs"
+lang = "md"
+role = "Canonical Koma and Jiku specifications and development documentation"
+owner = "koma"
+repository = "https://github.com/komawm/docs"
+docs = "https://github.com/komawm/docs/tree/main/docs"
+
+[repo.packaging]
+kind = "tooling"
+lang = "bash/python"
+role = "Distribution packaging and guarded release delivery"
+owner = "koma"
+repository = "https://github.com/komawm/packaging"
+docs = "https://github.com/komawm/packaging/tree/main/docs"
+
+# Shared external reference; may be a user-managed symlink, never a submodule.
+[external.phodopus]
+kind = "core"
+lang = "rust"
+role = "Shared external Lua runtime"
+owner = "upstream"
+repository = "https://github.com/Xuepoo/phodopus"
+docs = "https://github.com/Xuepoo/phodopus/tree/main/docs"
+path = "phodopus"
+
+[meta.recording]
+kind = "meta"
+role = "Ignored durable local evidence and VM artifacts; no Git or CarryCtx project"
+
+[meta.".agents"]
+kind = "meta"
+role = "Workspace agent guidance, commands, and vendored CarryCtx skill"

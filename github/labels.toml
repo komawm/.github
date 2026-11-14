@@ -1,0 +1,67 @@
+# Local declaration only. No remote synchronization is performed by this kit.
+schema_version = 1
+
+[[labels]]
+name = "type:bug"
+color = "d73a4a"
+description = "Unexpected behavior with reproducible evidence"
+
+[[labels]]
+name = "type:feature"
+color = "a2eeef"
+description = "New user-visible behavior or capability"
+
+[[labels]]
+name = "type:chore"
+color = "cfd3d7"
+description = "Tooling, CI, maintenance, or repository configuration"
+
+[[labels]]
+name = "type:docs"
+color = "0075ca"
+description = "Documentation and specification work"
+
+[[labels]]
+name = "area:core"
+color = "5319e7"
+description = "Compositor, model, protocol, or input behavior"
+
+[[labels]]
+name = "area:workspace"
+color = "7057ff"
+description = "Organization, workspace, and agent governance"
+
+[[labels]]
+name = "area:tooling"
+color = "1d76db"
+description = "Controller, MCP, overview, or development tools"
+
+[[labels]]
+name = "area:jiku"
+color = "5319e7"
+description = "Desktop orchestration agent and bundled skills"
+
+[[labels]]
+name = "area:packaging"
+color = "1d76db"
+description = "Distribution packaging, artifacts, and release delivery"
+
+[[labels]]
+name = "platform:linux"
+color = "0e8a16"
+description = "Linux build or runtime behavior"
+
+[[labels]]
+name = "platform:bsd"
+color = "006b75"
+description = "BSD investigation or explicitly scoped support work"
+
+[[labels]]
+name = "priority:high"
+color = "b60205"
+description = "Prioritized by an explicit project decision"
+
+[[labels]]
+name = "status:blocked"
+color = "e4e669"
+description = "Waiting for a named dependency or external condition"

@@ -1,0 +1,8 @@
+[repo]
+name = ".github"
+kind = "meta"
+lang = "md/python"
+role = "Organization profile and portable workspace governance"
+owner = "koma"
+repository = "https://github.com/komawm/.github"
+docs = "https://github.com/komawm/.github/tree/main/docs"
