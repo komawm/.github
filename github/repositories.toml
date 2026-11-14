@@ -13,6 +13,8 @@ default_branch = "main"
 allow_squash_merge = true
 delete_branch_on_merge = true
 visibility = "public"
+release_environment = "release"
+release_deployment_policy = "tag:v*.*.*"
 
 [repositories.organization]
 url = "https://github.com/komawm/.github"
@@ -35,6 +37,8 @@ default_branch = "main"
 allow_squash_merge = true
 delete_branch_on_merge = true
 visibility = "public"
+release_environment = "release"
+release_deployment_policy = "tag:v*.*.*"
 
 [repositories.koma-types]
 url = "https://github.com/komawm/koma-types"
@@ -46,6 +50,8 @@ default_branch = "main"
 allow_squash_merge = true
 delete_branch_on_merge = true
 visibility = "public"
+release_environment = "release"
+release_deployment_policy = "tag:v*.*.*"
 
 [repositories.koma-docs]
 url = "https://github.com/komawm/docs"
@@ -72,3 +78,5 @@ require_pull_request = false
 required_checks = []
 workflows = ["cd"]
 visibility = "public"
+release_environment = "release"
+release_deployment_policy = "branch:main"

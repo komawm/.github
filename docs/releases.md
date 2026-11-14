@@ -23,20 +23,30 @@ Software rendering or nested tests alone do not establish hardware support.
 KVM availability does not establish GPU passthrough. Preserve the current
 Hyprland session during all validation.
 
-## Future artifact workflow
+## Development prerelease channel (`v0.0.x`)
 
-A later publishing task can prepare a Linux archive with the selected binaries,
-configuration examples, session resources, license notices, a release manifest,
-and checksums. Test installation and removal in an isolated VM before attaching
-artifacts to a GitHub release. Add distribution packages only after their
-build/install/upgrade/rollback process is accepted. Do not enable tag-triggered
-release publication while the current product baseline is failing.
+`v0.0.1` is published as a GitHub **prerelease** marked as a development
+build. It records a reviewed, CI-green source revision and convenience
+artifacts; it is not the accepted `v0.1.0` product release and makes no
+hardware, DRM/KMS, or security claim.
 
-This local setup supplies quality and security workflows plus a release runbook.
-It deliberately does not publish binaries, create tags or releases, or create
-platform accounts. Existing CI must pass on the revision actually released.
-Re-evaluate action/toolchain pins and platform packaging requirements in that
-future task.
+| Repository | Workflow | Trigger | Assets | Credential |
+| --- | --- | --- | --- | --- |
+| `komawm/koma` | `release.yml` | Push of tag `vX.Y.Z` (or `workflow_dispatch` dry run) | `koma-<ver>-x86_64-unknown-linux-gnu.tar.gz` (binaries, resources, examples, `LICENSE`, `RELEASE-MANIFEST.toml`) and `SHA256SUMS` | Built-in `GITHUB_TOKEN`, `contents: write` only in the `publish` job |
+| `komawm/jiku` | `release.yml` | Push of tag `vX.Y.Z` | `jiku-<ver>-src.tar.gz` (library scaffold source), manifest, `SHA256SUMS` | Built-in `GITHUB_TOKEN` |
+| `komawm/koma-types` | `release.yml` | Push of tag `vX.Y.Z` | `koma-types-<ver>.tar.gz`, standalone `koma.lua`, `SHA256SUMS` | Built-in `GITHUB_TOKEN` |
+| `komawm/packaging` | `cd-archlinux.yml` | Manual `workflow_dispatch` with `publish=true` | Arch Linux package, `SHA256SUMS-archlinux`, `PACKAGE-MANIFEST.toml` uploaded to the existing product release | `PRODUCT_RELEASE_TOKEN` |
+
+Every publishing job runs in a protected `release` environment. Product
+environments only accept deployments from tags matching `v*.*.*`; the packaging
+environment only accepts `main`. Each release workflow re-runs the repository's
+`just check` gate on the tagged revision and verifies that the tag equals the
+manifest version before any asset is uploaded. Consumers verify downloads with
+`sha256sum -c SHA256SUMS`.
+
+Distribution packages produced by packaging CD are development review
+candidates until their install, upgrade, and rollback process is accepted.
+Re-evaluate action/toolchain pins before each release.
 
 The dedicated [packaging repository](https://github.com/komawm/packaging) owns
 distribution/CD implementation and its [channel acceptance runbook](https://github.com/komawm/packaging/blob/main/docs/release.md).
@@ -48,24 +58,20 @@ separately licensed type definitions, canonical documentation, or upstream
 Phodopus. Keep those notices and corresponding-source requirements in the
 accepted distribution.
 
-## Credential names for later work
+## Credentials
 
-No secret values are needed or stored now. Choose only the credentials required
-by an explicitly selected publishing channel:
+The product prerelease workflows need no user-supplied secret. Configure only
+the credentials required by a selected channel, as environment secrets of the
+owning repository's `release` environment:
 
-| Name | Future purpose | Handling |
-| --- | --- | --- |
-| `GITHUB_TOKEN` | Repository-scoped GitHub release uploads | Built-in Actions token; grant `contents: write` only in the publishing job |
-| `PRODUCT_RELEASE_TOKEN` | Upload from packaging CD to a selected product repository | Use a narrowly scoped GitHub App installation or fine-grained token for that product; packaging's built-in token does not grant cross-repository write access |
-| `CARGO_REGISTRY_TOKEN` | Optional crates.io publishing of selected library crates | Prefer trusted publishing/OIDC if available; never required for binary-only releases |
-| `RELEASE_SIGNING_KEY` | Optional artifact signing after a signing scheme is selected | Protected environment secret; document rotation and verification separately |
-| `RELEASE_SIGNING_PASSPHRASE` | Only if the selected signing key requires one | Protected environment secret; never print or include in artifacts |
+| Name | Repository / environment | Purpose | Handling |
+| --- | --- | --- | --- |
+| `GITHUB_TOKEN` | Product `release` (built-in) | Create the product's own GitHub prerelease and upload assets | Never stored; `contents: write` only in the `publish` job |
+| `PRODUCT_RELEASE_TOKEN` | `komawm/packaging` → `release` | Upload packaging CD artifacts to `komawm/koma` (later `komawm/jiku`) Releases | GitHub App installation token or fine-grained token limited to the target product repositories with `Contents: write`; packaging's built-in token cannot write to other repositories |
+| `CARGO_REGISTRY_TOKEN` | Product `release` | Optional crates.io publishing of selected library crates | Not used by `v0.0.x`; prefer trusted publishing/OIDC |
+| `RELEASE_SIGNING_KEY` / `RELEASE_SIGNING_PASSPHRASE` | Product or packaging `release` | Optional artifact signing after a scheme is selected | Not used by `v0.0.x`; document rotation and verification first |
 
-Distribution-specific repository tokens or upload keys are chosen only when
-that channel is authorized. Do not invent credentials or request broad personal
-tokens during workspace initialization. Use protected release environments and
-the minimum job permissions; document verification instructions for consumers.
-Scope organization secrets to an explicit allowed repository list only when
-multiple approved repositories share a need; otherwise use the owning product
-or packaging repository's protected channel-specific environment. Bitty secrets
-are neither universal defaults nor inputs to this setup.
+Add required reviewers to a `release` environment when publication should need
+an explicit approval. Never print, commit, or embed secret values in artifacts,
+and scope organization secrets to an explicit repository list only when several
+repositories share a need.
