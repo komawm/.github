@@ -26,7 +26,7 @@ An environment may protect root control directories such as `.agents`. A denied 
 
 ## Local state
 
-Disposable data belongs in `/tmp/koma/`. Durable local evidence, image captures, VM disks, machine capability reports, and experiment notes belong in ignored `recording/`. The root ignore file is a routing convention; each real repository also ignores its own recording directory. Root ignore rules do not turn the umbrella into a Git repository. Never commit raw CarryCtx state, runtime sockets, access tokens, local environment overrides, ISO images, or disk images.
+Disposable data belongs in `/tmp/koma/`. Durable local evidence, image captures, VM disks, machine capability reports, experiment notes, and read-only external reference clones under `recording/references/` (such as `Hyprland` and `niri`) belong in ignored `recording/`. The six `komawm` repositories are published on GitHub (`remote_changes_enabled = true`, `v0.0.x` incubation line before `v0.1.0` release acceptance) and configured from the declarative GitHub plan in `github/`. The root ignore file is a routing convention; each real repository also ignores its own recording directory. Root ignore rules do not turn the umbrella into a Git repository. Never commit raw CarryCtx state, runtime sockets, access tokens, local environment overrides, ISO images, or disk images.
 
 CarryCtx is initialized inside each Git checkout. Its database lives under the Git common directory; configuration is versioned in the owning repository. New clones initialize fresh local state. Vendored agent skills provide operating instructions, not state synchronization. Never push private snapshots; any public state transport needs an explicitly redacted publication artifact and separate authorization.
 

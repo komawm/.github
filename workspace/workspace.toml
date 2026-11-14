@@ -6,7 +6,7 @@ organization = "https://github.com/komawm"
 model = "independent-repositories"
 temporary_directory = "/tmp/koma"
 recording_directory = "recording"
-remote_changes_enabled = false
+remote_changes_enabled = true
 development_versions = "0.0.x"
 first_accepted_release = "0.1.0"
 
@@ -71,7 +71,7 @@ path = "phodopus"
 
 [meta.recording]
 kind = "meta"
-role = "Ignored durable local evidence and VM artifacts; no Git or CarryCtx project"
+role = "Ignored durable local evidence, VM artifacts, and read-only reference clones (recording/references/); no Git or CarryCtx project"
 
 [meta.".agents"]
 kind = "meta"

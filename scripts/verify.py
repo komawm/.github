@@ -74,10 +74,14 @@ def main() -> int:
         if not milestone.get("acceptance"):
             errors.append(f"Missing milestone acceptance criteria: {milestone['title']}")
     settings = load(repository / "github/repositories.toml")
-    if settings.get("remote_changes_enabled") is not False:
-        errors.append("Local GitHub declaration must not enable remote changes")
-    if source_map["workspace"].get("remote_changes_enabled") is not False:
-        errors.append("Workspace initialization must remain local-only")
+    if not isinstance(settings.get("remote_changes_enabled"), bool):
+        errors.append("github/repositories.toml must declare boolean remote_changes_enabled")
+    if source_map["workspace"].get("remote_changes_enabled") != settings.get("remote_changes_enabled"):
+        errors.append("workspace.toml and github/repositories.toml must agree on remote_changes_enabled")
+    if settings.get("remote_changes_enabled") is True:
+        for repo_key, entry in settings["repositories"].items():
+            if entry.get("visibility") not in {"public", "private"}:
+                errors.append(f"{repo_key}: active remote_changes_enabled requires explicit public or private visibility")
     if {entry["url"] for entry in settings["repositories"].values()} != {
         entry["repository"] for entry in source_map["repo"].values()
     }:
