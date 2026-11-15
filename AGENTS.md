@@ -12,4 +12,4 @@ Repository guidance overrides shared contribution defaults. Docs (local `koma-do
 
 Run `just check` for template, Python, Markdown-link, metadata, and Actions validation. Run `just workspace-check` only from a checkout with its sibling repositories installed. Changes to file installation logic also require temporary-directory probes for idempotence, conflicting destinations, and symlink refusal. Do not change product source, publish repositories, or install desktop sessions as part of workspace maintenance.
 
-Use `just hooks-install` to compose lefthook with managed CarryCtx hooks. Do not bypass hooks. Dependabot handles GitHub Actions here; the Rust product repository handles Cargo dependency updates and explicitly reviewed Rust toolchain pin updates separately.
+Use `just hooks-install` to compose lefthook with managed CarryCtx hooks. Do not bypass hooks. Dependabot handles grouped monthly GitHub Actions updates here (`interval: monthly`); the Rust product repositories handle Cargo dependency updates and explicitly reviewed Rust toolchain pin updates separately.
