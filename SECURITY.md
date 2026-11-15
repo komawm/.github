@@ -24,6 +24,7 @@ Report vulnerabilities against the owning repository where the issue originates:
 | [komawm/koma-types](https://github.com/komawm/koma-types) | Versioned LuaLS configuration type definitions |
 | [komawm/packaging](https://github.com/komawm/packaging) | Distribution packaging templates, release manifests, and CD workflows |
 | [komawm/docs](https://github.com/komawm/docs) | Canonical architecture, IPC, and configuration specifications |
+| [komawm/website](https://github.com/komawm/website) | Public Astro static site (`https://komawm.org`, `https://komawm.org/jiku/`) and Edge Worker (`komawm-website`) |
 | [komawm/.github](https://github.com/komawm/.github) | Organization templates, governance workflows, and workspace setup kit |
 
 Issues originating in the external Lua runtime [Xuepoo/phodopus](https://github.com/Xuepoo/phodopus) that affect Koma or Jiku sandbox boundaries may be reported privately to `komawm` first for coordinated triage.
@@ -40,6 +41,7 @@ Use one of the following private channels:
    - [Report in komawm/koma-types](https://github.com/komawm/koma-types/security/advisories/new)
    - [Report in komawm/packaging](https://github.com/komawm/packaging/security/advisories/new)
    - [Report in komawm/docs](https://github.com/komawm/docs/security/advisories/new)
+   - [Report in komawm/website](https://github.com/komawm/website/security/advisories/new)
    - [Report in komawm/.github](https://github.com/komawm/.github/security/advisories/new)
 2. **Direct maintainer email** (use this directly if Private Vulnerability Reporting is not enabled on a repository or if you require an email channel):
    - Send details to [`xuepoofoter@gmail.com`](mailto:xuepoofoter@gmail.com) (the organization contact listed on [github.com/komawm](https://github.com/komawm)) with `[komawm security] <repository>` in the subject line.

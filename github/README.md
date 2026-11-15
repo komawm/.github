@@ -3,7 +3,7 @@
 The [repository settings](https://github.com/komawm/.github/blob/main/github/repositories.toml),
 [labels](https://github.com/komawm/.github/blob/main/github/labels.toml), and
 [milestones](https://github.com/komawm/.github/blob/main/github/milestones.toml)
-define the declarative GitHub plan for the six published `komawm` repositories
+define the declarative GitHub plan for the seven published `komawm` repositories
 (`remote_changes_enabled = true`, public visibility, `v0.0.x` incubation line
 before `v0.1.0` release acceptance). The setup kit does not run an automatic
 background API writer; remote updates are applied deliberately from this plan.
@@ -20,11 +20,16 @@ the initial branch exists. Keep the source repository and upstream Phodopus
 ownership independent.
 
 The local checkout `koma-docs` maps to the existing remote `komawm/docs`. Its
-plan has no Actions workflows, required checks/reviews, CodeRabbit, or PR
-requirement; run its Markdown checks locally. Packaging has local packaging
-checks and CD, with no generic CI or issue/PR requirement. Do not apply shared
-organization issue/PR templates or product branch requirements to these two
-repositories. The `workflows` entries describe scope, not deployed Actions.
+plan runs Markdown and manual-bundle parity CI (`ci.yml`) alongside
+`cd-manual.yml` (uploading tri-lingual manual bundles to Cloudflare R2 at
+`https://cdn.komawm.org/manual/` and sending `repository_dispatch: manual-published`
+to `komawm/website`), without requiring issues, PRs, CodeRabbit, or review gates.
+Packaging runs packaging validation CI (`ci.yml`) and guarded CD workflows
+(`cd-archlinux.yml`, `cd-release.yml`, `cd-release-matrix.yml`), without an
+issue/PR requirement. Do not apply shared organization issue/PR templates or
+product branch requirements to these two repositories. `komawm/website` uses
+standard public CI/deploy/CodeQL workflows targeting Cloudflare Workers Static
+Assets (`https://komawm.org` and `https://komawm.org/jiku/`).
 
 Issues and pull requests should have one `type:*` label and relevant `area:*`
 and `platform:*` labels. Use `priority:high` only after an explicit prioritization
