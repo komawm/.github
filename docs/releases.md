@@ -71,8 +71,9 @@ accepted distribution.
 
 ## Web, CDN, and Documentation Flow
 
-- **Public site (`komawm/website`)**: Serves Koma at `https://komawm.org` (docs under `/docs/`) and Jiku at `https://komawm.org/jiku/` (docs under `/jiku/docs/`) in `en`, `zh-CN`, and `ja` via Astro static pre-rendering and Cloudflare Workers Static Assets.
+- **Public site (`komawm/website`)**: Serves Koma at `https://komawm.org` (docs under `/docs/`) and Jiku at `https://komawm.org/jiku/` (docs under `/jiku/docs/`) in `en`, `zh-CN`, and `ja` via Astro static pre-rendering and Cloudflare Workers (`komawm-website`, with `www.komawm.org` redirecting `301` to `https://komawm.org`).
 - **CDN (`https://cdn.komawm.org`)**: Backed by the `komawm` Cloudflare R2 bucket, hosting versioned manual bundles (`manual/{koma,jiku}/`), multi-distro release artifacts and `SHA256SUMS` (`releases/`), signed deb822 APT repository metadata (`apt/`), and installer scripts (`install/`).
+- **Provisioning vs GitHub Secrets**: Cloudflare R2 bucket `komawm` (`https://cdn.komawm.org`) and Worker `komawm-website` (`komawm.org`, `www.komawm.org`) are provisioned locally; GitHub Actions environment secrets (`CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLARE_API_TOKEN`, `WEBSITE_DISPATCH_TOKEN`, and release tokens) are left for explicit user setup before `v0.0.1` release publication.
 - **Commitless doc rebuilds**: Updating `manual/**` on `komawm/docs` runs `cd-manual.yml` -> uploads bundles to `https://cdn.komawm.org/manual/` -> sends `repository_dispatch` (`manual-published`) to `komawm/website` -> `deploy.yml` syncs/SHA-256 verifies manuals and deploys static HTML with zero commits in `komawm/website`.
 - **Nix `flake.nix` model**: `komawm/koma` owns the canonical root `flake.nix`; `komawm/packaging` keeps out-of-tree `nix/*.in` pinned templates and delegates upstream Nix/Cachix evaluation (`CACHIX_AUTH_TOKEN`) to the product repository's `flake.nix`.
 
