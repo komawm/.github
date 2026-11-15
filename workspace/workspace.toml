@@ -59,6 +59,14 @@ owner = "koma"
 repository = "https://github.com/komawm/packaging"
 docs = "https://github.com/komawm/packaging/tree/main/docs"
 
+[repo.website]
+kind = "web"
+lang = "ts"
+role = "Public Koma (komawm.org) and Jiku (komawm.org/jiku/) tri-lingual static website"
+owner = "koma"
+repository = "https://github.com/komawm/website"
+docs = "https://github.com/komawm/docs"
+
 # Shared external reference; may be a user-managed symlink, never a submodule.
 [external.phodopus]
 kind = "core"

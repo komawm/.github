@@ -62,7 +62,7 @@ release_planned_secrets = ["COSIGN_PRIVATE_KEY", "COSIGN_PASSWORD"]
 
 [repositories.koma-docs]
 url = "https://github.com/komawm/docs"
-description = "Canonical Koma and Jiku architecture, specifications, and development docs"
+description = "Canonical Koma and Jiku architecture, specifications, and user manuals"
 topics = ["koma", "wayland", "documentation"]
 has_issues = false
 has_wiki = false
@@ -71,8 +71,16 @@ require_pull_request = false
 required_checks = []
 require_review = false
 coderabbit_required = false
-workflows = []
+workflows = ["ci", "cd-manual"]
 visibility = "public"
+manual_cd_environment = "manual-cd"
+manual_cd_deployment_policy = "branch:main"
+manual_cd_active_secrets = []
+manual_cd_planned_secrets = [
+  "CLOUDFLARE_ACCOUNT_ID",
+  "CLOUDFLARE_API_TOKEN",
+  "WEBSITE_DISPATCH_TOKEN",
+]
 
 [repositories.packaging]
 url = "https://github.com/komawm/packaging"
@@ -83,19 +91,23 @@ has_wiki = false
 default_branch = "main"
 require_pull_request = false
 required_checks = []
-workflows = ["cd"]
+workflows = ["ci", "cd-archlinux", "cd-release", "cd-release-matrix"]
 visibility = "public"
 release_environment = "release"
 release_deployment_policy = "branch:main"
 release_publish_default = false
 release_active_secrets = ["PRODUCT_RELEASE_TOKEN"]
 release_planned_secrets = [
+  "CLOUDFLARE_ACCOUNT_ID",
+  "CLOUDFLARE_API_TOKEN",
+  "GH_PAT",
   "COSIGN_PRIVATE_KEY",
   "COSIGN_PASSWORD",
   "AUR_SSH_PRIVATE_KEY",
   "APT_GPG_PRIVATE_KEY",
   "APT_GPG_PASSPHRASE",
   "APT_REPO_TOKEN",
+  "COPR_CONFIG",
   "COPR_API_LOGIN",
   "COPR_API_TOKEN",
   "RPM_GPG_PRIVATE_KEY",
@@ -106,4 +118,24 @@ release_planned_secrets = [
   "CACHIX_SIGNING_KEY",
   "HOMEBREW_TAP_TOKEN",
   "FREEBSD_PKG_SIGNING_KEY",
+]
+
+[repositories.website]
+url = "https://github.com/komawm/website"
+homepage = "https://komawm.org"
+description = "Public Koma (komawm.org) and Jiku (komawm.org/jiku/) tri-lingual static website"
+topics = ["koma", "jiku", "astro", "cloudflare-workers", "documentation"]
+has_issues = true
+has_wiki = false
+default_branch = "main"
+allow_squash_merge = true
+delete_branch_on_merge = true
+workflows = ["ci", "deploy", "codeql", "snapshot-source"]
+visibility = "public"
+production_environment = "production"
+production_deployment_policy = "branch:main or repository_dispatch:manual-published"
+production_active_secrets = []
+production_planned_secrets = [
+  "CLOUDFLARE_ACCOUNT_ID",
+  "CLOUDFLARE_API_TOKEN",
 ]
